@@ -1,0 +1,15 @@
+extends:
+  - '@labforward/react'
+
+overrides:
+  - files:
+      - '**/*.jsx'
+      - '**/*.tsx'
+    rules:
+      react/jsx-uses-react: 0
+      react/react-in-jsx-scope: 0
+
+settings:
+  import/resolver:
+    webpack:
+      config: 'config/webpack/development.js'

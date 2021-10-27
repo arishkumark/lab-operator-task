@@ -1,0 +1,21 @@
+---
+default: &default
+  adapter: postgresql
+  host: '<%= ENV.fetch("PG_HOST") { "localhost" } %>'
+  port: '<%= ENV.fetch("PG_PORT") { "5432" } %>'
+  username: '<%= File.file?("/run/secrets/postgres-user") ? File.read("/run/secrets/postgres-user").strip : "postgres" %>'
+  password: '<%= File.file?("/run/secrets/postgres-passwd") ? File.read("/run/secrets/postgres-passwd").strip : "" %>'
+  encoding: unicode
+  pool: 20
+
+development:
+  <<: *default
+  database: '<%= ENV.fetch("PG_DATABASE_NAME") { "example_development" } %>'
+
+test:
+  <<: *default
+  database: '<%= ENV.fetch("PG_DATABASE_NAME") { "example_test" } %>'
+
+production:
+  <<: *default
+  database: '<%= ENV.fetch("PG_DATABASE_NAME") { "example_production" } %>'

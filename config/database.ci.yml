@@ -1,0 +1,21 @@
+---
+default: &default
+  adapter: postgresql
+  host: localhost
+  port: 5432
+  username: postgres
+  password: postgres
+  encoding: unicode
+  pool: 20
+
+development:
+  <<: *default
+  database: example_development
+
+test:
+  <<: *default
+  database: example_test
+
+production:
+  <<: *default
+  database: example_production
